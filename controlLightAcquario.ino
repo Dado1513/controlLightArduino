@@ -10,9 +10,9 @@ bool Century = true;
 bool set = false;
 int year = 18;
 int month = 5;
-int date = 1;
-int hour = 17;
-int minute = 55;
+int date = 20;
+int hour = 18;
+int minute = 45;
 int second = 0;
 String accensioneLuce;   //Declare a String variable to hold your name
 bool changeValue = true;
@@ -36,6 +36,7 @@ void setup() {
 }
  
 void loop() {
+  bool on = false; 
   
  while(true){
       Serial.print(rtc.getYear());
@@ -54,16 +55,17 @@ void loop() {
   
       int hour = int(rtc.getHour(h12,PM)); 
       
-      if(hour >= 9 && hour <= 20){
+      if(hour >= 9 && hour <= 20 && !on){
         
         digitalWrite(RELAY1,0);           // Turns ON Relays 1
         Serial.println("Light ON");
+        on = true;
       
-      
-      }else{
+      }else if((hour<=9 || hour >=20) && on){
         
         digitalWrite(RELAY1,1);           // Turns ON Relays 1
         Serial.println("Light OFF");
+        on = false;
         
       }
       
