@@ -11,8 +11,8 @@ bool set = false;
 int year = 18;
 int month = 5;
 int date = 20;
-int hour = 18;
-int minute = 45;
+int hour = 19;
+int minute = 03;
 int second = 0;
 String accensioneLuce;   //Declare a String variable to hold your name
 bool changeValue = true;
@@ -99,7 +99,7 @@ void loop() {
       }
       
       
-      delay (60000*10);
+      delay (60000*10); // every 10 min
   }
   
 }
