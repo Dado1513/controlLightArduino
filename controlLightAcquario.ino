@@ -37,8 +37,15 @@ void setup() {
  
 void loop() {
   bool on = false; 
+  int hour = int(rtc.getHour(h12,PM)); 
+
+  if (hour < 9 || hour >=20){
   
- while(true){
+    on = true;
+  
+  }
+  
+  while(true){
       Serial.print(rtc.getYear());
       Serial.print("-");
       Serial.print(rtc.getMonth(Century));
@@ -53,17 +60,21 @@ void loop() {
       Serial.print(rtc.getDoW(), DEC);
       Serial.println();
   
-      int hour = int(rtc.getHour(h12,PM)); 
+      hour = int(rtc.getHour(h12,PM)); 
       
-      if(hour >= 9 && hour <= 20 && !on){
+      if(hour >= 9 && hour < 20 && !on ){
+
         
+        // to uncomment
         digitalWrite(RELAY1,0);           // Turns ON Relays 1
         Serial.println("Light ON");
         on = true;
       
-      }else if((hour<=9 || hour >=20) && on){
+      }else if((hour<9 || hour >=20) && on){
+
         
-        digitalWrite(RELAY1,1);           // Turns ON Relays 1
+        // to uncoment
+        digitalWrite(RELAY1,1);           // Turns OFF Relays 1
         Serial.println("Light OFF");
         on = false;
         
